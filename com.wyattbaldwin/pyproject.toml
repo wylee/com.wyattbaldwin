@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "com.wyattbaldwin"
+version = "1.0a1.dev0"
+description = "com.wyattbaldwin base/namespace package"
+readme = "README.md"
+authors = ["Wyatt Baldwin <self@wyattbaldwin.com>"]
+repository = "https://github.com/wylee/com.wyattbaldwin"
+
+packages = [
+    { include = "com", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+runcommands = "^1.0a63"
+
+[tool.poetry.dev-dependencies]
+black = { version = "*", allow-prereleases = true }
+coverage = "*"
+
+[tool.poetry.scripts]
+make-package = "com.wyattbaldwin.commands:make_package.console_script"
+run-tests = "com.wyattbaldwin.commands:run_tests.console_script"
+
+[tool.make-release.args]
+merge = false
+tag-name = "{name}-{version}"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
