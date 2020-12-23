@@ -1,5 +1,5 @@
 # @cached_property
 
-## 1.0a1 - unreleased
+## 1.0 - 2020-12-22
 
-In progress...
+Initial version

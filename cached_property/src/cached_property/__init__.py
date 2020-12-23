@@ -2,7 +2,7 @@ import functools
 import threading
 
 
-__version__ = "1.0a1.dev0"
+__version__ = "1.0"
 
 
 class cached_property:
