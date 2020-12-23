@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "com.wyattbaldwin.cached_property"
-version = "1.0"
+version = "1.1.dev0"
 description = "@cached_property"
 readme = "README.md"
 authors = ["Wyatt Baldwin <self@wyattbaldwin.com>"]
