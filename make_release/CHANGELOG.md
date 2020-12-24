@@ -1,5 +1,9 @@
 # Make a Release
 
+## 1.0a2 - unreleased
+
+In progress...
+
 ## 1.0a1 - 2020-12-24
 
 Initial version. This was originally developed in the [RunCommands
