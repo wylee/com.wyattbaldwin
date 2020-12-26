@@ -1,8 +1,8 @@
 # Make a Release
 
-## 1.0a2 - unreleased
+## 1.0a2 - 2020-12-25
 
-In progress...
+Improvements and other changes.
 
 ## 1.0a1 - 2020-12-24
 
