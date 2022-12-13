@@ -1,3 +1,3 @@
 from .release import make_release
 
-__version__ = "1.0a3"
+__version__ = "1.0a4.dev0"

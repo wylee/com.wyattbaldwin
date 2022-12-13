@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "com.wyattbaldwin.make_release"
-version = "1.0a3"
+version = "1.0a4.dev0"
 description = "Make a release"
 readme = "README.md"
 authors = ["Wyatt Baldwin <self@wyattbaldwin.com>"]
