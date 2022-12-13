@@ -2,7 +2,9 @@
 
 ## 1.0a3 - unreleased
 
-In progress...
+- Dropped support for Python 3.6 since it has been EOL for a year now.
+- Upgraded `runcommands` dependency from 1.0a63 to 1.0a71.
+- Added `isort` dev dependency and fixed imports.
 
 ## 1.0a2 - 2020-12-25
 

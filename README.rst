@@ -7,7 +7,8 @@ in various projects.
 Minimum Python Version
 ======================
 
-These packages work on Python 3.6 and up.
+- `cached_property` - 3.6 and up
+- `make_release` - 3.7 and up
 
 Package Installation
 ====================
@@ -17,7 +18,7 @@ or ``setup.py``. For example, if your project uses Poetry::
 
     # pyproject.toml
     [tool.poetry.dependencies]
-    python = "^3.6"
+    python = "^3.7"
     "com.wyattbaldwin.xyz" = "^1.0"
 
 .. note: TOML requires double quotes around keys that contain dots.
