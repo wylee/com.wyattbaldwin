@@ -16,8 +16,8 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-runcommands = "^1.0a63"
 python = "^3.7"
+runcommands = "^1.0a71"
 
 [tool.poetry.dev-dependencies]
 "com.wyattbaldwin" = { path = "../com.wyattbaldwin", develop = true }
