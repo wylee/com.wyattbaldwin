@@ -1,6 +1,6 @@
 # Make a Release
 
-## 1.0a3 - unreleased
+## 1.0a3 - 2022-12-12
 
 - Dropped support for Python 3.6 since it has been EOL for a year now.
 - Upgraded `runcommands` dependency from 1.0a63 to 1.0a71.
