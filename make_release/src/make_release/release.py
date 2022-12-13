@@ -3,13 +3,13 @@ import pathlib
 
 from runcommands.args import arg
 from runcommands.command import command
-from runcommands.util import abort, printer, confirm
 from runcommands.commands.local import local
+from runcommands.util import abort, confirm, printer
 
-from .prepare import prepare_release
 from .merge import merge_to_target_branch
-from .tag import create_release_tag
+from .prepare import prepare_release
 from .resume import resume_development
+from .tag import create_release_tag
 from .util import (
     ReleaseInfo,
     find_change_log,

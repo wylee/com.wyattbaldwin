@@ -5,7 +5,6 @@ from collections import namedtuple
 from runcommands.commands import local
 from runcommands.util import abort, printer
 
-
 ReleaseInfo = namedtuple(
     "ReleaseInfo",
     (
@@ -119,7 +118,7 @@ def get_current_version(file, name, abort_on_not_found=True):
     #
     # E.g.: __version__ = '1.0.dev0'
     version_re = (
-        fr"""^{name}"""
+        rf"""^{name}"""
         r""" *= *"""
         r"""(?P<quote>['"])((?P<version>.+?)(?P<dev_marker>\.dev\d+)?)?\1 *$"""
     )

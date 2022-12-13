@@ -19,13 +19,17 @@ include = [
 python = "^3.7"
 runcommands = "^1.0a71"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 "com.wyattbaldwin" = { path = "../com.wyattbaldwin", develop = true }
-black = { version = "*", allow-prereleases = true }
+black = "*"
 coverage = "*"
+isort = "*"
 
 [tool.poetry.scripts]
 make-release = "make_release:make_release.console_script"
+
+[tool.isort]
+lines_after_imports = 2
 
 [tool.make-release.args]
 merge = false

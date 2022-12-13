@@ -7,7 +7,6 @@ import sys
 from runcommands.args import arg
 from runcommands.command import command
 
-
 PYPROJECT_TEMPLATE = """\
 [tool.poetry]
 name = "${qualified_name}"

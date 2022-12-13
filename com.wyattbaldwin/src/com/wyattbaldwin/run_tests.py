@@ -2,7 +2,6 @@ import sys
 import unittest
 
 from coverage import Coverage
-
 from runcommands.args import arg
 from runcommands.command import command
 
