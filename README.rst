@@ -7,8 +7,8 @@ in various projects.
 Minimum Python Version
 ======================
 
-- `cached_property` - 3.6 and up
-- `make_release` - 3.7 and up
+- `cached-property` - 3.7 and up
+- `make-release` - 3.7 and up
 
 Package Installation
 ====================

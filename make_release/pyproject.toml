@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "com.wyattbaldwin.make_release"
+name = "com-wyattbaldwin-make_release"
 version = "1.0a4.dev0"
 description = "Make a release"
 readme = "README.md"
 authors = ["Wyatt Baldwin <self@wyattbaldwin.com>"]
-repository = "https://github.com/wylee/com.wyattbaldwin/tree/dev/make_release"
+repository = "https://github.com/wylee/com.wyattbaldwin/tree/dev/make-release"
 
 packages = [
     { include = "make_release", from = "src" }
@@ -20,7 +20,7 @@ python = "^3.7"
 runcommands = "^1.0a71"
 
 [tool.poetry.group.dev.dependencies]
-"com.wyattbaldwin" = { path = "../com.wyattbaldwin", develop = true }
+com-wyattbaldwin = { path = "../com-wyattbaldwin", develop = true }
 black = "*"
 coverage = "*"
 isort = "*"
