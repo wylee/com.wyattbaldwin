@@ -15,7 +15,7 @@ def create_release_tag(info, merge):
         printer.info("Target branch:", info.target_branch)
         local(("git", "checkout", info.target_branch), "\n")
     else:
-        printer.info("Target branch:", info.source, "\n")
+        printer.info("Target branch:", info.source_branch, "\n")
         local(("git", "checkout", info.source_branch))
 
     printer.print()

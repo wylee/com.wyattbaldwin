@@ -10,7 +10,7 @@ def prepare_release(info):
 
     current_branch = get_current_branch()
 
-    local(("git", "checkout", info.dev_branch))
+    local(("git", "checkout", info.source_branch))
 
     if info.pyproject_file:
         quote = info.pyproject_version_quote

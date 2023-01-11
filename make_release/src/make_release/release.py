@@ -68,7 +68,7 @@ def make_release(
         short_option="-d",
         help="Release date [today]",
     ) = None,
-    dev_branch: arg(
+    source_branch: arg(
         short_option="-b",
         help="Branch to merge from [current branch]",
     ) = None,
@@ -152,7 +152,15 @@ def make_release(
     cwd = pathlib.Path.cwd()
     name = name or cwd.name
 
-    printer.hr("Releasing", name)
+    if source_branch is None:
+        source_branch = get_current_branch()
+        confirm(
+            ":warning: Is this the correct source branch?: "
+            f"[bold red]{source_branch}[/bold red]",
+            abort_on_unconfirmed=True,
+        )
+        print()
+
     printer.header("Releasing", name)
     print_step("Testing?", test)
     print_step("Preparing?", prepare)
@@ -161,10 +169,8 @@ def make_release(
     print_step("Resuming development?", resume)
 
     if merge:
-        if dev_branch is None:
-            dev_branch = get_current_branch()
-        if dev_branch == target_branch:
-            abort(1, f"Dev branch and target branch are the same: {dev_branch}")
+        if source_branch == target_branch:
+            abort(1, f"Dev branch and target branch are the same: {source_branch}")
 
     pyproject_file = pathlib.Path("pyproject.toml")
     if pyproject_file.is_file():
@@ -235,7 +241,7 @@ def make_release(
 
     info = ReleaseInfo(
         name,
-        dev_branch,
+        source_branch,
         target_branch,
         pyproject_file,
         pyproject_version_line_number,
@@ -255,7 +261,7 @@ def make_release(
     print_info("Version:", info.version)
     print_info("Release date:", info.date)
     if merge:
-        print_info("Dev branch:", dev_branch)
+        print_info("Dev branch:", source_branch)
         print_info("Target branch:", target_branch)
     if tag:
         print_info("Tag name:", tag_name)

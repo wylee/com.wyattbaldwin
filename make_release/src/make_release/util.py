@@ -9,7 +9,7 @@ ReleaseInfo = namedtuple(
     "ReleaseInfo",
     (
         "name",
-        "dev_branch",
+        "source_branch",
         "target_branch",
         "pyproject_file",
         "pyproject_version_line_number",
