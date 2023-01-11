@@ -1,6 +1,6 @@
 # Make a Release
 
-## 1.0a4 - unreleased
+## 1.0a4 - 2023-01-10
 
 In progress...
 
