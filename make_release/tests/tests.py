@@ -1,8 +1,8 @@
 import doctest
 
-import make_release
+from make_release import util
 
 
 def load_tests(loader, tests, ignore):
-    tests.addTests(doctest.DocTestSuite(make_release))
+    tests.addTests(doctest.DocTestSuite(util))
     return tests

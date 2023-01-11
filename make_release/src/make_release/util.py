@@ -132,6 +132,53 @@ def get_current_version(file, name, abort_on_not_found=True):
 
 
 def get_next_version(current_version):
+    """Get next version based on current version.
+
+    This handles the following formats:
+
+    - 1.0         -> 1.1
+    - 1.0.post1   -> 1.1
+    - 1.0.0       -> 1.1.0
+    - 1.0.0.post1 -> 1.1.0
+    - 0.0.1       -> 0.0.2
+    - 0.0.1.post1 -> 0.0.2
+    - 1.0a1       -> 1.0a2
+    - 1.0a1.post1 -> 1.0a2
+
+    Note that in all cases any suffix will be removed (`.post1` in these
+    examples).
+
+    Examples::
+
+        >>> get_next_version("1.0")
+        '1.1'
+        >>> get_next_version("1.1.post1")
+        '1.2'
+
+        >>> get_next_version("1.0.0")
+        '1.1.0'
+        >>> get_next_version("1.2.0")
+        '1.3.0'
+        >>> get_next_version("1.0.1")
+        '1.1.0'
+        >>> get_next_version("1.0.1.post1")
+        '1.1.0'
+        >>> get_next_version("1.2.1.post1")
+        '1.3.0'
+
+        >>> get_next_version("0.0.0")
+        '0.0.1'
+        >>> get_next_version("0.0.1")
+        '0.0.2'
+        >>> get_next_version("0.0.2.post1")
+        '0.0.3'
+
+        >>> get_next_version("1.0a1")
+        '1.0a2'
+        >>> get_next_version("1.0a2.post1")
+        '1.0a3'
+
+    """
     next_version_re = r"^(?P<major>\d+)\.(?P<minor>\d+)(?P<rest>.*)$"
     match = re.search(next_version_re, current_version)
 
@@ -143,32 +190,57 @@ def get_next_version(current_version):
         minor = int(minor)
 
         rest = match.group("rest")
-        patch_re = r"^\.(?P<patch>\d+)$"
-        match = re.search(patch_re, rest)
+        patch_re = r"^\.(?P<patch>\d+)(?P<rest>.*)$"
+        patch_match = re.search(patch_re, rest)
 
-        if match:
-            # X.Y.Z
-            minor += 1
-            patch = match.group("patch")
+        if patch_match:
+            # <major>.<minor>.<patch><rest>
+            #
+            # Example: 1.0.2
+            # Example: 1.0.2.post1
+            #
+            # If the major and minor versions are both 0, increment the
+            # patch version, if possible. In all other cases, increment
+            # the minor version and set the patch version to 0.
+            patch = patch_match.group("patch")
+            patch = int(patch)
+            if (major, minor) == (0, 0):
+                patch = int(patch) + 1
+            else:
+                minor += 1
+                patch = 0
             next_version = f"{major}.{minor}.{patch}"
         else:
-            pre_re = r"^(?P<pre_marker>a|b|rc)(?P<pre_version>\d+)$"
-            match = re.search(pre_re, rest)
-            if match:
-                # X.YaZ
-                pre_marker = match.group("pre_marker")
-                pre_version = match.group("pre_version")
+            pre_re = r"^(?P<pre_type>a|b|rc)(?P<pre_version>\d+)(?P<rest>.*)$"
+            pre_match = re.search(pre_re, rest)
+            if pre_match:
+                # <major>.<minor><prerelease type><prerelease version>
+                #
+                # Example: 1.0a2
+                # Example: 1.0a2.post1
+                #
+                # Increment prerelease version.
+                pre_type = pre_match.group("pre_type")
+                pre_version = pre_match.group("pre_version")
                 pre_version = int(pre_version)
                 pre_version += 1
-                next_version = f"{major}.{minor}{pre_marker}{pre_version}"
+                next_version = f"{major}.{minor}{pre_type}{pre_version}"
             else:
-                # X.Y or starts with X.Y (but is not X.Y.Z or X.YaZ)
+                # <major>.<minor><rest>
+                #
+                # Example: 1.0.post1
+                #
+                # Increment prerelease version.
                 minor += 1
                 next_version = f"{major}.{minor}"
 
         return next_version
 
-    abort(5, f"Cannot automatically determine next version from {current_version}")
+    abort(
+        5,
+        f"Could not guess next version from version {current_version!r}.\n"
+        "Use the -w option to specify the next version manually.",
+    )
 
 
 def print_info(label, arg, *args):
