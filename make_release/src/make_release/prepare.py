@@ -37,6 +37,7 @@ def prepare_release(info):
     commit_files = (info.pyproject_file, info.version_file, info.change_log)
     local(("git", "diff", *commit_files))
 
+    printer.print()
     if info.confirmation_required:
         confirm("Commit these changes?", abort_on_unconfirmed=True)
     else:

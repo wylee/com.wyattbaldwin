@@ -9,13 +9,19 @@ def create_release_tag(info, merge):
 
     current_branch = get_current_branch()
 
-    if merge:
-        local(("git", "checkout", info.target_branch))
-    else:
-        local(("git", "checkout", info.dev_branch))
+    printer.info("Source branch:", info.source_branch)
 
+    if merge:
+        printer.info("Target branch:", info.target_branch)
+        local(("git", "checkout", info.target_branch), "\n")
+    else:
+        printer.info("Target branch:", info.source, "\n")
+        local(("git", "checkout", info.source_branch))
+
+    printer.print()
     local("git log -1 --oneline")
 
+    printer.print()
     if info.confirmation_required:
         confirmed = confirm("Tag this commit?")
     else:

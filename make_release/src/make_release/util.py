@@ -254,7 +254,8 @@ def print_step(message, flag):
 
 
 def print_step_header(arg, *args):
-    printer.hr("\n%s" % arg, *args, end="\n\n")
+    printer.print("\n")
+    printer.header(arg, *args)
 
 
 def update_line(path, line_to_update, new_content):

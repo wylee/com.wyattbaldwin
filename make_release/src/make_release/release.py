@@ -153,6 +153,7 @@ def make_release(
     name = name or cwd.name
 
     printer.hr("Releasing", name)
+    printer.header("Releasing", name)
     print_step("Testing?", test)
     print_step("Preparing?", prepare)
     print_step("Merging?", merge)
@@ -260,6 +261,7 @@ def make_release(
         print_info("Tag name:", tag_name)
     print_info("Next version:", info.next_version)
 
+    printer.print()
     if info.confirmation_required:
         msg = f"Continue with release?: {info.version} - {info.date}"
         confirm(msg, abort_on_unconfirmed=True)
